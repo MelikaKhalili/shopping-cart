@@ -16,8 +16,8 @@ export default function ProductList() {
     <div className="w-full h-full bg-gray-600 p-12 grid grid-cols-4 gap-6">
       {products.map((product) => (
         <Product
-          img={product.images}
-          titel={product.name}
+          images={product.images}
+          name={product.name}
           price={product.price}
           id={product.id}
         />
