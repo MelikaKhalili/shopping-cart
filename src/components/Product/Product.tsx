@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FaEuroSign } from "react-icons/fa6";
 import { MdStarRate } from "react-icons/md";
+import { Link } from "react-router";
 import { ContextCart } from "../../Context/ContextCart";
 import Button from "../base/Button/Button";
 export interface Iprops {
@@ -39,7 +40,9 @@ export default function Product({ images, name, price, id }: Iprops) {
         <MdStarRate />
         <MdStarRate />
       </div>
-      <h1>{name}</h1>
+      <Link to={`/product/${id}`}>
+        <h1>{name}</h1>
+      </Link>
       <span className="flex items-center justify-center gap-2">
         <FaEuroSign />
         {price}
