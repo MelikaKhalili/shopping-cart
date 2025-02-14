@@ -5,7 +5,7 @@ import { ContextCart } from "../../Context/ContextCart";
 import Counter from "./Counter/Counter";
 
 export default function Cart() {
-  const { cartItem, dispatchCart } = useContext(ContextCart);
+  const { cartItem, dispatchCart, setModalCart } = useContext(ContextCart);
   console.log(cartItem);
   const handelDeleteProduct = (id: string | number) => {
     dispatchCart({
@@ -28,7 +28,7 @@ export default function Cart() {
                 <img className="w-24" src={item.images} alt="imgProduct" />
                 <div>
                   <h2 className="text-white">{item.name}</h2>
-                  <span className="text-white">{item.price}</span>
+                  <span className="text-white">{item.price * item.count}</span>
                 </div>
               </div>
               <div className="flex gap-8 items-center">
@@ -48,9 +48,20 @@ export default function Cart() {
       </div>
       <footer className="flex items-center justify-between bg-gray-700 px-6 py-1  w-full">
         <p className="text-white">
-          Total:<span>0</span>
+          Total:
+          <span>
+            {cartItem.reduce((sum: number, current: any) => {
+              return sum + current.price * current.count;
+            }, 0)}
+          </span>
         </p>
-        <Button size={"md"} bg={"blue.600"} color={"white"} rounded={"xl"}>
+        <Button
+          onClick={() => setModalCart(false)}
+          size={"md"}
+          bg={"blue.600"}
+          color={"white"}
+          rounded={"xl"}
+        >
           Checkout
         </Button>
       </footer>
