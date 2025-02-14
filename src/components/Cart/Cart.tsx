@@ -32,7 +32,11 @@ export default function Cart() {
                 </div>
               </div>
               <div className="flex gap-8 items-center">
-                <Counter id={item.id} count={item.count} />
+                <Counter
+                  id={item.id}
+                  count={item.count}
+                  className={"bg-gray-900 flex flex-col py-1 px-4 text-white"}
+                />
                 <IoCloseSharp
                   onClick={() => handelDeleteProduct(item.id)}
                   className="text-white"

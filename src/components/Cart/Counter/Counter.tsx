@@ -3,8 +3,9 @@ import { ContextCart } from "../../../Context/ContextCart";
 interface Iprops {
   id: string | number;
   count: number;
+  className: string;
 }
-export default function Counter({ count, id }: Iprops) {
+export default function Counter({ count, id, className }: Iprops) {
   const { dispatchCart } = useContext(ContextCart);
   console.log(dispatchCart);
   const handelDecreaseProduct = () => {
@@ -24,7 +25,7 @@ export default function Counter({ count, id }: Iprops) {
     }
   };
   return (
-    <div className="bg-gray-900 flex flex-col py-1 px-4 text-white">
+    <div className={className}>
       <button onClick={handelDecreaseProduct}>-</button>
       <span>{count}</span>
       <button
