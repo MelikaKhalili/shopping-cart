@@ -14,13 +14,13 @@ export default function Product({ images, name, price, id }: Iprops) {
   const addToCart = () => {
     dispatchCart({
       type: "ADD_PRODUCT",
-      payload: { images, name, price: price, id: id },
+      payload: { images, name, price: price, id: id, count: 1 },
     });
   };
   return (
     <div className="bg-gray-500  border-2 border-white p-4 flex flex-col items-center shadow-md min-h-[400px] relative gap-4">
       <img src={images} alt="Image-Product" />
-      <div className="flex">
+      <div className="flex text-yellow-300">
         <MdStarRate />
         <MdStarRate />
         <MdStarRate />

@@ -9,6 +9,7 @@ interface IProducts {
   name: string;
   price: string | number;
   id: string;
+  count: number;
 }
 type IProductsAction =
   | {
@@ -18,13 +19,37 @@ type IProductsAction =
   | {
       type: "DELETE_PRODUCT";
       payload: string;
+    }
+  | {
+      type: "UPDATE_PRODUCT";
+      payload: {
+        id: string | number;
+        count: number;
+      };
     };
 const reducer = (state: IProducts[], action: IProductsAction) => {
   switch (action.type) {
     case "ADD_PRODUCT":
-      return [...state, action.payload];
+      const productFounded = state.find(
+        (product) => product.id === action.payload.id
+      );
+      // if (!productFounded) {
+      //   return [...state, action.payload];
+      // } else {
+      //   return state;
+      // }
+      return !productFounded ? [...state, action.payload] : state;
     case "DELETE_PRODUCT":
-      return;
+      return state.filter((item) => item.id !== action.payload);
+    case "UPDATE_PRODUCT":
+      return state.map((item) => {
+        if (item.id === action.payload.id) {
+          console.log(item.id);
+          console.log(action.payload.id);
+          item.count = action.payload.count;
+        }
+        return item;
+      });
   }
 };
 export default function HomeCommponent() {
